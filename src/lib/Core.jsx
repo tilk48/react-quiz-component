@@ -194,7 +194,14 @@ const Core = ({ questions, appLocale, showDefaultResult, onComplete, customResul
 
     // Default single to avoid code breaking due to automatic version upgrade
     answerSelectionType = answerSelectionType || 'single';
-    return <input type = "text" onSubmit = {(event) => onClickAnswer(event.target.value)} disabled={buttons[index].disabled || false} className={buttons[index].className}></input>
+    return <input type = "text" className = "question-text-input" onKeyDown = {(event) => {
+      if (event.key === 'Enter') {
+        console.log('do validate')
+        onClickAnswer(event.target.value)
+        event.target.value = "";
+      }
+    
+    }} ></input>
     /*return answers.map((answer, index) =>
       <Fragment key={index}>
         {(buttons[index] !== undefined)
