@@ -7,7 +7,7 @@ export const rawMarkup = (data) => {
     return {__html: rawMarkup};
 };
 
-export const checkAnswer = (index, correctAnswer, answerSelectionType, {
+export const checkAnswer = (index, textInput, correctAnswer, answerSelectionType, {
     userInput,
     userAttempt,
     currentQuestionIndex,
@@ -33,7 +33,7 @@ export const checkAnswer = (index, correctAnswer, answerSelectionType, {
     };
     if (answerSelectionType === 'single') {
         if (userInput[currentQuestionIndex] === undefined) {
-            userInput.push(index)
+            userInput.push(textInput)
         }
 
         if (indexStr === correctAnswer) {
@@ -102,7 +102,7 @@ export const checkAnswer = (index, correctAnswer, answerSelectionType, {
         }
 
         if (userInput[currentQuestionIndex].length < maxNumberOfMultipleSelection) {
-            userInput[currentQuestionIndex].push(index);
+            userInput[currentQuestionIndex].push(textInput);
 
             if (correctAnswer.includes(index)) {
                 if (userInput[currentQuestionIndex].length <= maxNumberOfMultipleSelection) {
